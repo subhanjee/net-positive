@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' fill='%230E2A22'/%3E%3Crect x='47' y='8' width='26' height='74' fill='%235FE3A1'/%3E%3Crect x='23' y='32' width='74' height='26' fill='%235FE3A1'/%3E%3Crect x='14' y='94' width='92' height='7' fill='%23F3F7F3'/%3E%3Crect x='14' y='107' width='92' height='7' fill='%23F3F7F3'/%3E%3C/svg%3E">
+<meta property="og:title" content="Net Positive">
+<meta property="og:description" content="Finance operations and automation for QuickBooks Online, Xero and NetSuite businesses.">
+<meta property="og:type" content="website">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Net Positive</title>
+<meta name="description" content="Net Positive is a finance operations and automation team for QuickBooks Online, Xero and NetSuite businesses.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: the page reads like a financial statement. Line items build down the page and the double rule under each total is the signature. Single brand look on purpose. */
+:root {
+  --ground: #0E2A22;
+  --ledger: #1A4A3B;
+  --positive: #5FE3A1;
+  --paper: #F3F7F3;
+  --paper-2: #E2ECE5;
+  --ink-soft: #3F5C50;
+  --on-ground-soft: #CFE3D8;
+  --display: 'Bricolage Grotesque', 'Trebuchet MS', Arial, sans-serif;
+  --mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+  --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  --step-1: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+  --step-2: clamp(1.75rem, 1.4rem + 1.6vw, 2.75rem);
+  --step-3: clamp(2.75rem, 1.6rem + 6vw, 6.5rem);
+  --wrap: 72rem;
+  color-scheme: light;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--ground); color: var(--paper); font-family: var(--display); font-size: var(--step-0); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+h1, h2, h3, p, ul, ol, dl, dd { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+h1, h2 { font-weight: 800; letter-spacing: -0.025em; line-height: 1; text-wrap: balance; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--positive); outline-offset: 3px; }
+.paper :focus-visible { outline-color: var(--ledger); }
+
+.band { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: clamp(3.5rem, 8vw, 6.5rem); }
+.wrap { max-width: var(--wrap); margin-inline: auto; display: grid; gap: clamp(2rem, 5vw, 3.5rem); }
+.paper { background: var(--paper); color: var(--ground); }
+.tint { background: var(--paper-2); color: var(--ground); }
+.label { font-family: var(--mono); font-size: 0.875rem; font-weight: 500; letter-spacing: 0.02em; color: var(--positive); }
+.paper .label, .tint .label { color: var(--ledger); }
+h2 { font-size: var(--step-2); max-width: 20ch; }
+.head { display: grid; gap: 0.75rem; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 3rem; padding: 0.7rem 1.4rem; font: inherit; font-weight: 700; text-decoration: none; border: 2px solid var(--positive); background: var(--positive); color: var(--ground); cursor: pointer; transition: background-color 0.15s, color 0.15s; }
+.btn:hover { background: transparent; color: var(--positive); }
+.btn.ghost { background: transparent; color: var(--positive); }
+.btn.ghost:hover { background: var(--positive); color: var(--ground); }
+
+/* Top */
+.top { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 1.25rem 0; }
+.top-in { max-width: var(--wrap); margin-inline: auto; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.brand { display: inline-flex; align-items: center; gap: 0.6rem; font-size: 1.375rem; font-weight: 800; letter-spacing: -0.02em; text-decoration: none; }
+.brand svg { width: 2.25rem; height: 2.25rem; flex: none; }
+.top nav ul { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.top nav a { font-family: var(--mono); font-size: 0.875rem; text-decoration: none; color: var(--on-ground-soft); }
+.top nav a:hover { color: var(--positive); text-decoration: underline; text-underline-offset: 4px; }
+
+/* Hero */
+.hero { padding-block: clamp(3rem, 7vw, 5.5rem) clamp(3rem, 7vw, 5rem); }
+.hero h1 { font-size: var(--step-3); line-height: 0.95; letter-spacing: -0.035em; }
+.hero h1 span { color: var(--positive); display: block; }
+.hero-copy { display: grid; gap: 1.75rem; }
+.lede { font-size: var(--step-1); line-height: 1.35; color: var(--on-ground-soft); max-width: 36ch; font-weight: 500; }
+.cta-row { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.creds { font-family: var(--mono); font-size: 0.875rem; color: var(--on-ground-soft); display: flex; flex-wrap: wrap; gap: 0.25rem 1.5rem; }
+
+/* Close chart: both bars share one 12 column scale */
+.close { background: var(--ledger); padding: clamp(1.25rem, 3vw, 2rem); display: grid; gap: 1rem; }
+.close-title { font-size: var(--step-1); font-weight: 700; line-height: 1.2; }
+.close-rows { display: grid; gap: 0.9rem; }
+.close-row { display: grid; gap: 0.3rem; }
+.close-name { font-family: var(--mono); font-size: 0.8125rem; color: var(--on-ground-soft); }
+.scale { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 3px; }
+.scale i { display: block; height: 2rem; background: var(--ground); }
+.scale i.before { background: var(--on-ground-soft); }
+.scale i.after { background: var(--positive); }
+.ticks { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 3px; font-family: var(--mono); font-size: 0.75rem; color: var(--on-ground-soft); text-align: center; font-variant-numeric: tabular-nums; }
+.close-note { font-size: 0.9375rem; color: var(--on-ground-soft); }
+
+/* Statement */
+.statement { display: grid; }
+.line { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.25rem 2rem; align-items: baseline; padding-block: 1.1rem; border-top: 1px solid rgba(14, 42, 34, 0.22); }
+.line:first-child { border-top: 0; }
+.line h3 { font-size: var(--step-1); font-weight: 700; line-height: 1.2; }
+.line p { grid-column: 1; color: var(--ink-soft); max-width: 60ch; }
+.line .fig { grid-column: 2; grid-row: 1 / span 2; font-size: var(--step-2); font-weight: 800; letter-spacing: -0.02em; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--ledger); }
+.total { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2rem; align-items: baseline; padding-block: 1.1rem 0.9rem; border-top: 2px solid var(--ground); border-bottom: 7px double var(--ground); font-weight: 800; font-size: var(--step-1); }
+.total span:last-child { text-align: right; }
+
+/* Two columns of services */
+.cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3px; background: var(--ground); }
+.col { background: var(--paper-2); padding: clamp(1.25rem, 3vw, 2.25rem); display: grid; gap: 1.25rem; align-content: start; min-width: 0; }
+.col.dark { background: var(--ledger); color: var(--paper); }
+.col h3 { font-size: var(--step-2); font-weight: 800; letter-spacing: -0.02em; line-height: 1; }
+.col.dark h3 { color: var(--positive); }
+.col ul { display: grid; gap: 0.6rem; }
+.col li { display: grid; grid-template-columns: 1rem minmax(0, 1fr); gap: 0.6rem; line-height: 1.35; }
+.col li::before { content: "+"; font-family: var(--mono); font-weight: 500; color: var(--ledger); }
+.col.dark li::before { color: var(--positive); }
+
+/* Four week start */
+.weeks { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2rem; }
+.week { display: grid; gap: 0.6rem; align-content: start; border-top: 3px solid var(--positive); padding-top: 1rem; min-width: 0; }
+.week h3 { font-family: var(--mono); font-size: 0.875rem; font-weight: 500; color: var(--positive); }
+.week p { font-size: var(--step-1); line-height: 1.25; font-weight: 500; }
+
+/* Pricing */
+.prices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; }
+.price { display: grid; gap: 0.5rem; align-content: start; min-width: 0; }
+.price h3 { font-size: var(--step-1); font-weight: 700; }
+.price .amt { font-size: var(--step-3); font-weight: 800; letter-spacing: -0.03em; line-height: 1; color: var(--ledger); font-variant-numeric: tabular-nums; }
+.price .amt small { font-size: var(--step-0); font-weight: 500; letter-spacing: 0; color: var(--ink-soft); }
+.price p { color: var(--ink-soft); max-width: 40ch; }
+
+/* Team and terms */
+.team { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 4rem); }
+.team-copy { display: grid; gap: 1rem; align-content: start; }
+.team-copy p { max-width: 54ch; }
+.clients { font-family: var(--mono); font-size: 0.9375rem; }
+.terms { display: grid; gap: 0; align-content: start; }
+.term { padding-block: 1rem; border-top: 1px solid rgba(14, 42, 34, 0.22); display: grid; gap: 0.2rem; }
+.term:first-child { border-top: 0; padding-top: 0; }
+.term dt { font-weight: 700; }
+.term dd { color: var(--ink-soft); }
+
+/* Start */
+.start { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 4rem); align-items: start; }
+.start-copy { display: grid; gap: 1rem; }
+.start-copy p { color: var(--on-ground-soft); max-width: 42ch; }
+form { display: grid; gap: 1rem; }
+.fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.field { display: grid; gap: 0.35rem; min-width: 0; }
+.field.wide { grid-column: 1 / -1; }
+label { font-family: var(--mono); font-size: 0.8125rem; color: var(--on-ground-soft); }
+input, select, textarea { width: 100%; font: inherit; color: var(--paper); background: var(--ledger); border: 2px solid var(--ledger); padding: 0.6rem 0.7rem; border-radius: 0; color-scheme: dark; }
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--positive); }
+.note { font-size: 0.875rem; color: var(--on-ground-soft); }
+.msg { background: var(--paper); color: var(--ground); padding: 1rem 1.1rem; font-family: var(--mono); font-size: 0.875rem; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere; min-height: 8rem; }
+.status { font-family: var(--mono); font-size: 0.8125rem; min-height: 1.25rem; color: var(--positive); }
+
+/* Foot */
+.foot { padding-block: 2rem; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); border-top: 1px solid var(--ledger); }
+.foot-in { max-width: var(--wrap); margin-inline: auto; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; align-items: center; font-family: var(--mono); font-size: 0.8125rem; color: var(--on-ground-soft); }
+
+@media (min-width: 62rem) {
+  .hero .wrap { grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); align-items: end; }
+}
+@media (max-width: 52rem) {
+  .weeks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .team, .start { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 34rem) {
+  .cols, .weeks, .prices { grid-template-columns: minmax(0, 1fr); }
+  .line { grid-template-columns: minmax(0, 1fr); }
+  .line .fig { grid-column: 1; grid-row: auto; text-align: left; }
+  .top nav { width: 100%; }
+  .top nav ul { gap: 0.4rem 1.1rem; }
+  .ticks { font-size: 0.625rem; }
+}
+</style>
+</head>
+<body>
+
+
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="#top" aria-label="Net Positive home">
+      <svg viewBox="0 0 120 120" aria-hidden="true"><rect x="47" y="8" width="26" height="74" fill="#5FE3A1"/><rect x="23" y="32" width="74" height="26" fill="#5FE3A1"/><rect x="14" y="94" width="92" height="7" fill="#F3F7F3"/><rect x="14" y="107" width="92" height="7" fill="#F3F7F3"/></svg>
+      Net Positive
+    </a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="#results">Results</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#start-plan">How we start</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#contact">Get a quote</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="band hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <h1>Books that close. <span>Systems that run.</span></h1>
+        <p class="lede">Finance operations and automation for QuickBooks Online, Xero and NetSuite businesses.</p>
+        <div class="cta-row">
+          <a class="btn" href="#contact">Get a scoped quote</a>
+          <a class="btn ghost" href="#results">See the results</a>
+        </div>
+        <p class="creds"><span>Top Rated Plus lead</span><span>100% Job Success</span><span>QuickBooks ProAdvisor</span></p>
+      </div>
+      <figure class="close" style="margin:0" aria-label="Month-end close moved from the 12th to the 5th business day">
+        <div class="close-title">Month-end close, 12th to 5th business day</div>
+        <div class="close-rows">
+          <div class="close-row">
+            <div class="close-name">Before: day 12</div>
+            <div class="scale" aria-hidden="true"><i class="before"></i><i class="before"></i><i class="before"></i><i class="before"></i><i class="before"></i><i class="before"></i><i class="before"></i><i class="before"></i><i class="before"></i><i class="before"></i><i class="before"></i><i class="before"></i></div>
+          </div>
+          <div class="close-row">
+            <div class="close-name">After: day 5</div>
+            <div class="scale" aria-hidden="true"><i class="after"></i><i class="after"></i><i class="after"></i><i class="after"></i><i class="after"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+          <div class="ticks" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span></div>
+        </div>
+        <figcaption class="close-note">Business days after month end, for a restoration company with a $1.4M receivables book.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="band paper" id="results">
+    <div class="wrap">
+      <div class="head">
+        <p class="label">Results</p>
+        <h2>The numbers from client work</h2>
+      </div>
+      <div>
+        <div class="statement">
+          <div class="line">
+            <h3>Receivables recovered</h3>
+            <p>Across property, real estate and restoration clients.</p>
+            <div class="fig">$5M+</div>
+          </div>
+          <div class="line">
+            <h3>Open AR cut on a $1.4M book</h3>
+            <p>A rebuilt aging report, a collections priority list and a 30-day follow-up cadence for a restoration company.</p>
+            <div class="fig">60%</div>
+          </div>
+          <div class="line">
+            <h3>Revenue migrated in a 13-year QuickBooks rebuild</h3>
+            <p>A -$956K income balance corrected, six sales channels synced with Synder, and a TaxJar export workflow built.</p>
+            <div class="fig">$23M+</div>
+          </div>
+          <div class="line">
+            <h3>Entities converted from cash to accrual</h3>
+            <p>One group, with books across QuickBooks Online, Xero and NetSuite.</p>
+            <div class="fig">8</div>
+          </div>
+          <div class="line">
+            <h3>Entities in one NetSuite OneWorld close</h3>
+            <p>Intercompany eliminations and consolidated statements, including two foreign subsidiaries.</p>
+            <div class="fig">5</div>
+          </div>
+          <div class="line">
+            <h3>Weeks of cash forecast for a staffing group</h3>
+            <p>The rolling forecast caught a cash shortfall before it happened.</p>
+            <div class="fig">13</div>
+          </div>
+        </div>
+        <div class="total"><span>Bottom line</span><span>Numbers you can act on</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band tint" id="services">
+    <div class="wrap">
+      <div class="head">
+        <p class="label">Services</p>
+        <h2>One team for the books and the systems behind them</h2>
+      </div>
+      <div class="cols">
+        <div class="col">
+          <h3>Books that close</h3>
+          <ul>
+            <li>Bookkeeping and cleanup</li>
+            <li>Bank and card reconciliations</li>
+            <li>Month-end close and management reporting</li>
+            <li>AR and collections: aging reviews, follow-up cadences, escalations</li>
+            <li>AP through Bill.com and Ramp</li>
+            <li>13-week cash forecasting</li>
+          </ul>
+        </div>
+        <div class="col dark">
+          <h3>Systems that run</h3>
+          <ul>
+            <li>n8n workflows for invoice approvals</li>
+            <li>Automated payment reminders</li>
+            <li>Synder sync for e-commerce sales channels</li>
+            <li>TaxJar sales tax workflows</li>
+            <li>Monthly checklists, AR follow-up and bill pay routines</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="start-plan">
+    <div class="wrap">
+      <div class="head">
+        <p class="label">How we start</p>
+        <h2>From a messy file to a fixed monthly date</h2>
+      </div>
+      <ol class="weeks">
+        <li class="week"><h3>Week 1</h3><p>File review and a written findings report</p></li>
+        <li class="week"><h3>Week 2</h3><p>Cleanup of reconciliations, categories and open items</p></li>
+        <li class="week"><h3>Week 3</h3><p>Monthly checklist, AR follow-up and bill pay set up</p></li>
+        <li class="week"><h3>Week 4 onward</h3><p>Monthly close and reporting package on a fixed date</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="band paper" id="pricing">
+    <div class="wrap">
+      <div class="head">
+        <p class="label">Pricing</p>
+        <h2>Two ways to work with us</h2>
+      </div>
+      <div class="prices">
+        <div class="price">
+          <h3>Cleanup projects</h3>
+          <div class="amt"><small>from</small> $500</div>
+          <p>Fixed scope work to bring your books back to a reliable state.</p>
+        </div>
+        <div class="price">
+          <h3>Monthly retainers</h3>
+          <div class="amt"><small>from</small> $750</div>
+          <p>Ongoing bookkeeping, close and reporting delivered every month.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band tint" id="team">
+    <div class="wrap team">
+      <div class="team-copy">
+        <p class="label">Who does the work</p>
+        <h2>Led by Hashim S.</h2>
+        <p>A Top Rated Plus freelancer on Upwork with close to a decade of finance experience and 3,800+ Upwork hours. QuickBooks Online ProAdvisor, BILL and Ramp certified.</p>
+        <p>Our team of 10 accountants has worked together since 2021. Every client gets a dedicated accountant working under his review, and automation is built by our developer, Saqib Shoukat.</p>
+        <p class="clients">Clients include iPromo, Helm Staffing and ServiceUp.</p>
+      </div>
+      <dl class="terms">
+        <div class="term"><dt>Access</dt><dd>Invited user access only, no shared logins. Every change is traceable in the software's audit log.</dd></div>
+        <div class="term"><dt>Confidentiality</dt><dd>NDA on request.</dd></div>
+        <div class="term"><dt>Hours</dt><dd>9 AM to 5 PM Eastern, with Pacific coverage on request. Canadian clients are covered by the same hours.</dd></div>
+        <div class="term"><dt>Scope</dt><dd>We do not file taxes or sign off as your CPA. We work alongside your CPA and prepare clean books for them.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="band" id="contact">
+    <div class="wrap start">
+      <div class="start-copy">
+        <p class="label">Get a quote</p>
+        <h2>Tell us what is behind</h2>
+        <p>Answer three questions and copy the message, then send it to us on Upwork. You'll get a scoped plan and quote within 24 hours.</p>
+        <div class="cta-row">
+          <button class="btn" type="button" id="copy">Copy message</button>
+          <a class="btn ghost" href="https://www.upwork.com/agencies/2117685920050872275/" target="_blank" rel="noopener">Open Upwork profile</a>
+        </div>
+        <p class="status" id="status" role="status"></p>
+      </div>
+      <div>
+        <form id="brief" autocomplete="off">
+          <div class="fields">
+            <div class="field wide">
+              <label for="software">Your accounting software</label>
+              <select id="software">
+                <option>QuickBooks Online</option>
+                <option>Xero</option>
+                <option>NetSuite</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="months">Months behind</label>
+              <input id="months" type="number" min="0" max="240" step="1" value="6" inputmode="numeric">
+            </div>
+            <div class="field">
+              <label for="accounts">Bank and card accounts</label>
+              <input id="accounts" type="number" min="0" max="500" step="1" value="4" inputmode="numeric">
+            </div>
+            <div class="field wide">
+              <label for="extra">Anything else (optional)</label>
+              <textarea id="extra" rows="2"></textarea>
+            </div>
+          </div>
+          <p class="note">The numbers shown are examples. Change them to match your business.</p>
+          <div class="msg" id="msg" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="foot-in">
+    <span>Net Positive. Finance operations and automation.</span>
+    <a href="#top">Back to top</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var software = document.getElementById('software');
+  var months = document.getElementById('months');
+  var accounts = document.getElementById('accounts');
+  var extra = document.getElementById('extra');
+  var msg = document.getElementById('msg');
+  var status = document.getElementById('status');
+
+  function count(value, one, many) {
+    var n = parseInt(value, 10);
+    if (isNaN(n) || n < 0) n = 0;
+    return n + ' ' + (n === 1 ? one : many);
+  }
+
+  function render() {
+    var lines = [
+      'Hi Net Positive,',
+      '',
+      'Software: ' + software.value,
+      'Behind by: ' + count(months.value, 'month', 'months'),
+      'Accounts: ' + count(accounts.value, 'bank or card account', 'bank and card accounts')
+    ];
+    var note = extra.value.trim();
+    if (note) lines.push('Notes: ' + note);
+    lines.push('', 'Please send a scoped plan and quote.');
+    msg.textContent = lines.join('\n');
+    status.textContent = '';
+  }
+
+  [software, months, accounts, extra].forEach(function (el) {
+    el.addEventListener('input', render);
+  });
+  document.getElementById('brief').addEventListener('submit', function (e) { e.preventDefault(); });
+
+  function selectMessage() {
+    var range = document.createRange();
+    range.selectNodeContents(msg);
+    var sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+  }
+
+  document.getElementById('copy').addEventListener('click', function () {
+    var done = function () { status.textContent = 'Message copied. Paste it into your Upwork message.'; };
+    var fail = function () { selectMessage(); status.textContent = 'Message selected. Press copy on your keyboard.'; };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(msg.textContent).then(done, fail);
+    } else {
+      fail();
+    }
+  });
+
+  render();
+})();
+</script>
+
+</body>
+</html>
